@@ -1,18 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-
-int count_lines(FILE *fptr) {
-    rewind(fptr);
-    int lines = 0;
-    while(!feof(fptr)) {
-        char ch = fgetc(fptr);
-        if(ch == '\n')
-            lines++;
-    }
-    rewind(fptr);
-    return lines;
-}
+#include "common.h"
 
 
 int get_max_and_invalidate(int list[], int size) {
@@ -37,13 +23,14 @@ int count_reps(int value, int list[], int size) {
     return count;
 }
 
-
-
 int main(int argc, char const *argv[]) {
-    FILE *fptr = fopen("input.txt", "r");
+    // Open file.
+    FILE *fptr = open_file_with_args(argc, argv);
+    if (!fptr)
+        return EXIT_FAILURE;
 
     // It's plus one because last index has no new line.
-    int num_elements = count_lines(fptr) + 1;
+    int num_elements = count_file_lines(fptr) + 1;
     printf("Num elements: %d\n", num_elements);
 
     // Alloc arrays as VLA.

@@ -41,7 +41,7 @@ int check_safeness(FILE *fptr) {
         int abs_diff = abs(value1 - value2);
         if (abs_diff < 1 || abs_diff > 3) {
             diff_ok = false;
-        } 
+        }
 
         // printf("Value1: %d, Value2: %d\n", value1, value2);
     } while(fgetc(fptr) != '\n' && !feof(fptr));
