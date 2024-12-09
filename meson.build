@@ -1,11 +1,17 @@
 project('adventofcode', 'c',
     version : '0.1',
-    default_options : ['warning_level=3']
+    default_options : [
+        'buildtype=debugoptimized',
+        'werror=false',
+        'warning_level=3',
+        'optimization=2'
+    ]
 )
 
 common_include = 'common/include'
 common_src = [
-    'common/src/file_utils.c'
+    'common/src/file_utils.c',
+    'common/src/pattern_searcher.c',
 ]
 
 executable('day1',
@@ -24,6 +30,16 @@ executable('day2',
     ],
     sources: [
         'day2/day2.c',
+        common_src
+    ]
+)
+
+executable('day3',
+    include_directories: [
+        common_include
+    ],
+    sources: [
+        'day3/day3.c',
         common_src
     ]
 )
