@@ -1,7 +1,7 @@
 project('adventofcode', 'c',
     version : '0.1',
     default_options : [
-        'buildtype=debugoptimized',
+        'buildtype=debug',
         'werror=false',
         'warning_level=3',
         'optimization=2'

@@ -18,26 +18,35 @@ int main(int argc, char const *argv[]) {
     // try to read mul, else, increment one character
     int total = 0;
     while(!feof(fptr)) {
+        // store position to rollback if needed
+        unsigned long position = ftell(fptr);
+        // try to read mul
         int ret = fscanf(fptr, "mul(%d,%d", &mul1, &mul2);
-        // mul() pattern.
         if (ret == 2) {
+            // if "mul(%d, %d", check for last )
             if (fgetc(fptr) == ')') {
-                // printf("Mul: %d, %d\n", mul1, mul2);
+                // clean patterns
+                clean_pattern_searcher(do_stack);
+                clean_pattern_searcher(dont_stack);
+
+                // add mul if enabled
                 if (mul_enable)
                     total += mul1 * mul2;
             }
-        }
-        // Check do pattern
-        else {
+        } else {
+            // return to last position
+            fseek(fptr, position, SEEK_SET);
+            // read next character
             char c = fgetc(fptr);
-            add_pattern_searcher(do_stack, c);
-            add_pattern_searcher(dont_stack, c);
+            // search do an don't patterns
+            add_pattern_searcher_char(do_stack, c);
+            add_pattern_searcher_char(dont_stack, c);
             if (check_pattern_pattern_searcher(do_stack)) {
-                printf("MUL ENABLED\n");
+                // printf("MUL ENABLED\n");
                 mul_enable = true;
             }
             if (check_pattern_pattern_searcher(dont_stack)) {
-                printf("MUL DISABLED\n");
+                // printf("MUL DISABLED\n");
                 mul_enable = false;
             }
         }

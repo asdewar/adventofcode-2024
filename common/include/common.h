@@ -13,9 +13,12 @@ typedef struct {
 } PatternSearcher;
 
 PatternSearcher *init_pattern_searcher(char* pattern);
-void add_pattern_searcher(PatternSearcher *stack, char c);
+void add_pattern_searcher_char(PatternSearcher *stack, char c);
 bool check_pattern_pattern_searcher(PatternSearcher *stack);
+void clean_pattern_searcher(PatternSearcher *stack);
 void destroy_pattern_searcher(PatternSearcher *stack);
+void print_pattern_searcher(PatternSearcher *ps);
+int get_pattern_searcher_index(PatternSearcher *ps, int i);
 
 /* File utils */
 FILE *open_file_with_args(int argc, char const *argv[]);
