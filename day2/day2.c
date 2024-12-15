@@ -12,7 +12,11 @@ int *read_report(FILE *fptr, int *size) {
             list = realloc(list, (*size) * sizeof(int));
         
         // read value
-        fscanf(fptr, "%d", &list[*size - 1]);        
+        int ret = fscanf(fptr, "%d", &list[*size - 1]);
+        if (ret != 1) {
+            printf("Failure on file format\n");
+            exit(EXIT_FAILURE);
+        }
 
     } while(fgetc(fptr) != '\n' && !feof(fptr));
 

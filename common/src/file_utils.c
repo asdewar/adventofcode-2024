@@ -24,3 +24,13 @@ int count_file_lines(FILE *fptr) {
     rewind(fptr);
     return lines;
 }
+
+int count_line_lenght(FILE *fptr) {
+    rewind(fptr);
+    int characters = 0;
+    while(!feof(fptr) && fgetc(fptr) != '\n') {
+        characters++;
+    }
+    rewind(fptr);
+    return characters;
+}

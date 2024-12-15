@@ -15,7 +15,7 @@ void add_pattern_searcher_char(PatternSearcher *ps, char c) {
     ps->buff[ps->last] = c;
 }
 
-bool check_pattern_pattern_searcher(PatternSearcher *ps) {
+bool check_pattern_searcher(PatternSearcher *ps) {
     for(int i = 0; i < ps->size; i++) {
         int j = get_pattern_searcher_index(ps, i);
         if (ps->pattern[i] != ps->buff[j])
@@ -26,7 +26,7 @@ bool check_pattern_pattern_searcher(PatternSearcher *ps) {
 
 void clean_pattern_searcher(PatternSearcher *ps) {
     memset(ps->buff, 0, ps->size);
-    ps->last = -1;
+    ps->last = 0;
 }
 
 void destroy_pattern_searcher(PatternSearcher *ps) {

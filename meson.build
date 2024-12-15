@@ -12,6 +12,7 @@ common_include = 'common/include'
 common_src = [
     'common/src/file_utils.c',
     'common/src/pattern_searcher.c',
+    'common/src/matrix.c',
 ]
 
 executable('day1',
@@ -40,6 +41,16 @@ executable('day3',
     ],
     sources: [
         'day3/day3.c',
+        common_src
+    ]
+)
+
+executable('day4',
+    include_directories: [
+        common_include
+    ],
+    sources: [
+        'day4/day4.c',
         common_src
     ]
 )

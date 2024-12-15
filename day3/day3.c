@@ -41,11 +41,11 @@ int main(int argc, char const *argv[]) {
             // search do an don't patterns
             add_pattern_searcher_char(do_stack, c);
             add_pattern_searcher_char(dont_stack, c);
-            if (check_pattern_pattern_searcher(do_stack)) {
+            if (check_pattern_searcher(do_stack)) {
                 // printf("MUL ENABLED\n");
                 mul_enable = true;
             }
-            if (check_pattern_pattern_searcher(dont_stack)) {
+            if (check_pattern_searcher(dont_stack)) {
                 // printf("MUL DISABLED\n");
                 mul_enable = false;
             }
@@ -53,6 +53,7 @@ int main(int argc, char const *argv[]) {
     }
 
     printf("Total: %d\n", total);
-
+    destroy_pattern_searcher(do_stack);
+    destroy_pattern_searcher(dont_stack);
     return 0;
 }

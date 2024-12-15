@@ -38,8 +38,13 @@ int main(int argc, char const *argv[]) {
     int list2[num_elements];
 
     // Read data.
-    for (int i = 0; i < num_elements; i++)
-        fscanf(fptr, "%d   %d\n", &list1[i], &list2[i]);
+    for (int i = 0; i < num_elements; i++) {
+        int ret = fscanf(fptr, "%d   %d\n", &list1[i], &list2[i]);
+        if (ret != 1) {
+            printf("Failure on file format\n");
+            exit(EXIT_FAILURE);
+        }
+    }
     printf("num elements: %d\n", num_elements);
 
     // Calculate similarity
